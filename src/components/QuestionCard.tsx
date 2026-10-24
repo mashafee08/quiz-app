@@ -5,19 +5,18 @@ import { NormalizedQuestion } from "@/lib/parser/types";
 import { SubmittedAnswer } from "@/lib/quiz/types";
 import { AnswerOption } from "./AnswerOption";
 import { Card, CardContent } from "./ui/card";
-import { CheckCircle2, XCircle, Lightbulb, Clock } from "lucide-react";
+import { CheckCircle2, XCircle, Lightbulb } from "lucide-react";
 
 interface QuestionCardProps {
   question: NormalizedQuestion;
   submittedAnswer?: SubmittedAnswer;
-  isAutoAdvancing: boolean;
+  isAutoAdvancing?: boolean;
   onSelectOption: (index: 0 | 1 | 2 | 3) => void;
 }
 
 export function QuestionCard({
   question,
   submittedAnswer,
-  isAutoAdvancing,
   onSelectOption,
 }: QuestionCardProps) {
   const isAnswered = Boolean(submittedAnswer);
@@ -26,17 +25,6 @@ export function QuestionCard({
 
   return (
     <Card className="w-full border-slate-200 dark:border-zinc-800 shadow-sm overflow-hidden">
-      {/* 2-second auto advance top indicator */}
-      {isAutoAdvancing && (
-        <div className="w-full bg-indigo-50 dark:bg-indigo-950/50 border-b border-indigo-100 dark:border-indigo-900/40 px-4 py-1.5 flex items-center justify-between text-xs text-indigo-700 dark:text-indigo-300 animate-pulse">
-          <span className="flex items-center gap-1.5 font-medium">
-            <Clock className="w-3.5 h-3.5 animate-spin" />
-            Advancing to next question in 2 seconds...
-          </span>
-          <span className="text-[11px] opacity-75">Click Next to jump immediately</span>
-        </div>
-      )}
-
       <CardContent className="p-6 sm:p-8 space-y-6">
         {/* Question Text */}
         <div className="space-y-2">
